@@ -265,48 +265,38 @@
 
   /* ── VOICES GRID ── */
   .voices-section {
-    padding: 2rem 3rem 8rem;
-    max-width: 1200px;
+    padding: 2rem 1.5rem 6rem;
+    max-width: 800px;
     margin: 0 auto;
+    width: 100%;
   }
   .voices-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
-
-  /* 大きいカード（1・2枚目） */
-  .voice-card {
-    position: relative;
-    background: var(--green);
-    overflow: hidden;
-    cursor: default;
-    transition: background 0.4s;
-  }
-  .voice-card:hover {
-    background: var(--green2);
-    z-index: 2;
-  }
-  .voice-card.featured {
-    grid-column: span 2;
-  }
-  .voice-card-inner {
-    padding: 3rem 2.5rem;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .voice-card {
+    background: var(--green);
+    border: 1px solid var(--line);
+    width: 100%;
+  }
+  .voice-card-inner {
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     position: relative;
   }
   .voice-card-inner::before {
     content: '「';
     position: absolute;
-    top: 1rem;
-    left: 1.5rem;
+    top: 0.5rem;
+    left: 1rem;
     font-family: 'Noto Serif JP', serif;
-    font-size: 6rem;
+    font-size: 5rem;
     color: var(--gold);
-    opacity: 0.08;
+    opacity: 0.07;
     line-height: 1;
     pointer-events: none;
   }
@@ -316,17 +306,14 @@
     font-size: 0.65rem;
     letter-spacing: 0.3em;
     color: var(--gold);
-    margin-bottom: 1.5rem;
     opacity: 0.8;
   }
   .voice-text {
     font-family: 'Noto Serif JP', serif;
-    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    font-size: 1rem;
     line-height: 2;
     color: var(--white);
     letter-spacing: 0.06em;
-    flex: 1;
-    margin-bottom: 2rem;
     position: relative;
     z-index: 1;
   }
@@ -339,7 +326,6 @@
     width: 30px;
     height: 1px;
     background: var(--gold);
-    margin-bottom: 1.2rem;
     opacity: 0.5;
   }
   .voice-author {
@@ -359,7 +345,6 @@
     font-size: 1.2rem;
     flex-shrink: 0;
   }
-  .voice-author-info {}
   .voice-name {
     font-family: 'Noto Serif JP', serif;
     font-size: 0.9rem;
@@ -371,11 +356,6 @@
     color: var(--gray);
     letter-spacing: 0.05em;
     margin-top: 0.2rem;
-  }
-
-  /* 境界線装飾 */
-  .voice-card + .voice-card {
-    border-left: 2px solid rgba(8,12,8,0.8);
   }
 
   /* ── PHOTO STRIP ── */
@@ -695,8 +675,8 @@
 <section class="voices-section">
   <div class="voices-grid">
 
-    <!-- Card 1: featured -->
-    <div class="voice-card featured reveal">
+    <!-- Card 1 -->
+    <div class="voice-card reveal">
       <div class="voice-card-inner">
         <p class="voice-number">— 01</p>
         <p class="voice-text">
