@@ -1372,7 +1372,38 @@
 
     @media (max-width: 768px) {
       nav { padding: 0 1.2rem; }
-      .nav-menu { display: none; }
+      .nav-menu {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(8,12,8,0.97);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        z-index: 400;
+      }
+      .nav-menu.open { display: flex; }
+      .nav-menu a { font-size: 1.2rem; color: rgba(255,255,255,0.85); letter-spacing: 0.15em; }
+      .nav-right { display: none; }
+      .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 600;
+        padding: 4px;
+      }
+      .hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--white);
+        transition: all 0.3s;
+      }
+      .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .hamburger.open span:nth-child(2) { opacity: 0; }
+      .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
       .sec { padding: 5rem 1.2rem; }
       .gallery-section { padding: 5rem 1.2rem; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1414,6 +1445,9 @@
     </a>
     <a href="#contact" class="nav-cta">参加する</a>
   </div>
+  <button class="hamburger" id="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- ── HERO ── -->
@@ -1961,6 +1995,22 @@
     alert('ありがとうございます！後ほどご連絡いたします。');
     e.target.reset();
   }
+
+  // ── ハンバーガーメニュー ──
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.querySelector('.nav-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navMenu.classList.toggle('open');
+    document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
 </script>
 </body>
 </html>
