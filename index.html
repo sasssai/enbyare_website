@@ -1191,6 +1191,74 @@
 
     .form-submit:hover { background: var(--green-mid); }
 
+    /* ── VOICES ── */
+    .voices-sec { background: var(--forest); padding: 8rem 1.5rem; overflow-x: clip; }
+    .voices-cards {
+      max-width: 860px;
+      margin: 3rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .v-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 2.5rem 2rem;
+      position: relative;
+    }
+    .v-card::before {
+      content: '「';
+      position: absolute;
+      top: 0.5rem; left: 1rem;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 5rem;
+      color: var(--sunset-light);
+      opacity: 0.06;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .v-num {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      color: var(--sunset-light);
+      opacity: 0.7;
+      margin-bottom: 1.2rem;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .v-text {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1rem;
+      line-height: 2.1;
+      color: rgba(255,255,255,0.88);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.8rem;
+      position: relative;
+      z-index: 1;
+    }
+    .v-text em { font-style: normal; color: var(--sunset-light); }
+    .v-divider { width: 28px; height: 1px; background: var(--sunset); opacity: 0.4; margin-bottom: 1.2rem; }
+    .v-author { display: flex; align-items: center; gap: 1rem; }
+    .v-icon {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(224,123,58,0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .v-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .v-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.9rem;
+      color: var(--white);
+      letter-spacing: 0.08em;
+    }
+    .v-attr { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; margin-top: 0.2rem; }
+    .voices-more {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
     /* ── FOOTER ── */
     footer {
       background: var(--black);
@@ -1333,7 +1401,7 @@
     <li><a href="#events">イベント</a></li>
     <li><a href="#leader">代表</a></li>
     <li><a href="#gallery">ギャラリー</a></li>
-    <li><a href="voices.html">参加者の声</a></li>
+    <li><a href="#voices">参加者の声</a></li>
     <li><a href="media.html">メディア</a></li>
     <li><a href="#contact">お問い合わせ</a></li>
   </ul>
@@ -1562,6 +1630,68 @@
           <cite>── 代表 堀金康太</cite>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VOICES ── -->
+<section class="voices-sec sec" id="voices">
+  <div class="inner">
+    <div class="reveal" style="text-align:center;">
+      <p class="sec-label" style="color:var(--sunset-light);">Voices</p>
+      <h2 class="sec-title" style="color:var(--white);">参加者の声</h2>
+    </div>
+    <div class="voices-cards">
+
+      <div class="v-card reveal">
+        <p class="v-num">— 01</p>
+        <p class="v-text">
+          初めは<em>「只見に行ってみたいな」くらいの気持ち</em>で参加したが、地域の方々との交流や、他大学・社会人と過ごす中で、只見について<em>詳しく知ることができた</em>。
+        </p>
+        <div class="v-divider"></div>
+        <div class="v-author">
+          <div class="v-icon">🌸</div>
+          <div>
+            <p class="v-name">白水 ゆづさ</p>
+            <p class="v-attr">会津短期大学 2年 ／ 初参加</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="v-card reveal delay-1">
+        <p class="v-num">— 02</p>
+        <p class="v-text">
+          山から見える<em>川沿いの民家の風景</em>がノスタルジックで、すごく良いと思った。都会では絶対に感じられない空気がそこにあった。
+        </p>
+        <div class="v-divider"></div>
+        <div class="v-author">
+          <div class="v-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v10l9 5 9-5V7L12 2z" stroke="#e07b3a" stroke-width="1.2" stroke-linejoin="round"/><path d="M12 2v15M3 7l9 5 9-5" stroke="#e07b3a" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <p class="v-name">小野 拓海</p>
+            <p class="v-attr">会津大学 1年 ／ 初参加</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="v-card reveal delay-2">
+        <p class="v-num">— 03</p>
+        <p class="v-text">
+          只見町に対して<em>印象が全くなかった</em>が、実際に足を運んでみると、自然が豊かで<em>人も温かい</em>ことを知れた。来る前と後で、まちへの見方がまるで変わった。
+        </p>
+        <div class="v-divider"></div>
+        <div class="v-author">
+          <div class="v-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#e07b3a" stroke-width="1.2"/><circle cx="12" cy="12" r="3" stroke="#e07b3a" stroke-width="1.2"/><line x1="12" y1="3" x2="12" y2="9" stroke="#e07b3a" stroke-width="1.2"/><line x1="12" y1="15" x2="12" y2="21" stroke="#e07b3a" stroke-width="1.2"/><line x1="3" y1="12" x2="9" y2="12" stroke="#e07b3a" stroke-width="1.2"/><line x1="15" y1="12" x2="21" y2="12" stroke="#e07b3a" stroke-width="1.2"/></svg>
+          </div>
+          <div>
+            <p class="v-name">齋藤 くるみ</p>
+            <p class="v-attr">大正大学 1年 ／ 初参加</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
