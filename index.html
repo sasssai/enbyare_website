@@ -94,6 +94,7 @@
       padding: 0 2.5rem;
       transition: background 0.4s, backdrop-filter 0.4s;
     }
+    .nav-top-row { display: contents; }
 
     nav.scrolled {
       background: rgba(8,12,8,0.92);
@@ -1376,35 +1377,38 @@
         flex-direction: column;
         align-items: stretch;
         height: auto;
-        background: rgba(8,12,8,0.97);
+        background: rgba(8,12,8,0.97) !important;
         backdrop-filter: blur(20px);
       }
       .nav-top-row {
-        display: flex;
+        display: flex !important;
         align-items: center;
         justify-content: space-between;
         padding: 0 1.2rem;
-        height: 52px;
+        height: 50px;
+        flex-shrink: 0;
       }
       .nav-menu {
-        display: flex;
+        display: flex !important;
         overflow-x: auto;
         gap: 0;
-        padding: 0 0.5rem 0.5rem;
+        padding: 0 0.5rem 6px;
         scrollbar-width: none;
         border-top: 1px solid rgba(255,255,255,0.06);
         flex-wrap: nowrap;
         justify-content: flex-start;
+        list-style: none;
+        height: auto;
       }
       .nav-menu::-webkit-scrollbar { display: none; }
       .nav-menu li { flex-shrink: 0; }
       .nav-menu a {
-        font-size: 0.72rem;
-        padding: 0.5rem 0.8rem;
+        font-size: 0.7rem;
+        padding: 6px 10px;
         white-space: nowrap;
         display: block;
-        color: rgba(255,255,255,0.65);
-        letter-spacing: 0.06em;
+        color: rgba(255,255,255,0.7);
+        letter-spacing: 0.05em;
       }
       .nav-right { display: none; }
       .hamburger { display: none; }
