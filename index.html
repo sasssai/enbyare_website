@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>えんびゃれ ─ 若者が結ぶ、只見の縁</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;900&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #1c2b4a;
+      --navy-deep:  #111d30;
+      --navy-mid:   #2e4270;
+      --gold:       #b8923a;
+      --gold-light: #d4aa5a;
+      --gold-pale:  #e8d5a3;
+      --ivory:      #f5f0e6;
+      --ivory-dark: #ede5d4;
+      --white:      #ffffff;
+      --ink:        #2c2c2c;
+      --muted:      #7a7a6e;
+      --border:     rgba(28,43,74,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--ivory);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--gold-pale); color: var(--navy); }
+
+    /* ── 飾り罫線 ── */
+    .kamon-line {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: var(--gold);
+    }
+
+    .kamon-line::before,
+    .kamon-line::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-pale), var(--gold), var(--gold-pale), transparent);
+    }
+
+    .kamon-diamond {
+      width: 8px; height: 8px;
+      border: 1px solid var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: var(--navy-deep);
+      border-bottom: 2px solid var(--gold);
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-img {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--gold);
+    }
+
+    .nav-brand-text {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: 0.12em;
+    }
+
+    .nav-brand-text span { color: var(--gold-light); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold-light);
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-socials {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .nav-social {
+      display: flex;
+      align-items: center;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-social:hover { color: var(--gold-light); }
+    .nav-social svg { width: 18px; height: 18px; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 640px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding-top: 68px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('../../Pictures/LINE_ALBUM_20260514_260514_17.jpg');
+      background-size: cover;
+      background-position: center 30%;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(17,29,48,0.72) 0%,
+        rgba(17,29,48,0.55) 50%,
+        rgba(17,29,48,0.82) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 2rem;
+      max-width: 800px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      padding: 0.4em 1.4em;
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .hero-badge::before,
+    .hero-badge::after {
+      content: '─';
+      font-size: 0.6rem;
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.4;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.8rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .hero-title .gold { color: var(--gold-light); }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.8);
+      line-height: 2.2;
+      letter-spacing: 0.1em;
+      margin-bottom: 3rem;
+    }
+
+    .hero-kamon { margin-bottom: 2.5rem; }
+    .hero-kamon .kamon-line::before,
+    .hero-kamon .kamon-line::after { flex: 0 0 60px; }
+
+    .hero-btns {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8em 2em;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.83rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    .btn-gold:hover { background: var(--gold-light); }
+
+    .btn-outline-white {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.6);
+      color: var(--white);
+    }
+
+    .btn-outline-white:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--white);
+    }
+
+    .btn-outline-navy {
+      background: transparent;
+      border: 1px solid var(--navy);
+      color: var(--navy);
+    }
+
+    .btn-outline-navy:hover {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .btn-navy {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .btn-navy:hover { background: var(--navy-mid); }
+
+    /* ── SCROLL INDICATOR ── */
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* ── SECTION BASE ── */
+    .sec {
+      padding: 7rem 2rem;
+    }
+
+    .sec-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .sec-head {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .sec-en {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .sec-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.2rem;
+    }
+
+    .sec-kamon { margin: 1.5rem 0; }
+
+    .sec-lead {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 2.2;
+      letter-spacing: 0.06em;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .about-img { overflow: hidden; }
+
+    .about-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .about-img:hover img { transform: scale(1.04); }
+
+    .about-img-main {
+      grid-column: 1 / 3;
+      height: 260px;
+    }
+
+    .about-img-sm { height: 170px; }
+
+    .about-body {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: #555;
+      line-height: 2.3;
+      letter-spacing: 0.05em;
+    }
+
+    .about-body p + p { margin-top: 1.2rem; }
+
+    .about-nums {
+      display: flex;
+      gap: 0;
+      margin-top: 2.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .num-item {
+      flex: 1;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .num-item:last-child { border-right: none; }
+
+    .num-val {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .num-unit { font-size: 1rem; color: var(--gold); }
+
+    .num-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── ACTIVITIES ── */
+    #activities { background: var(--navy); }
+
+    #activities .sec-title { color: var(--white); }
+    #activities .sec-lead { color: rgba(255,255,255,0.6); }
+    #activities .sec-en { color: var(--gold-light); }
+
+    .act-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .act-card {
+      background: var(--navy-deep);
+      overflow: hidden;
+      transition: background 0.25s;
+    }
+
+    .act-card:hover { background: var(--navy-mid); }
+
+    .act-card-img {
+      width: 100%; height: 200px;
+      overflow: hidden;
+    }
+
+    .act-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+      filter: brightness(0.9);
+    }
+
+    .act-card:hover .act-card-img img { transform: scale(1.05); }
+
+    .act-card-body { padding: 1.6rem; }
+
+    .act-num {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .act-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      line-height: 1.6;
+      margin-bottom: 0.6rem;
+    }
+
+    .act-desc {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.9;
+    }
+
+    /* ── EVENTS ── */
+    #events { background: var(--ivory); }
+
+    .event-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    .event-item {
+      display: grid;
+      grid-template-columns: 140px 1fr auto;
+      align-items: center;
+      gap: 2.5rem;
+      padding: 2rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+
+    .event-item:last-child { border-bottom: none; }
+    .event-item:hover { background: var(--ivory); }
+
+    .event-date {
+      text-align: center;
+    }
+
+    .event-date-day {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .event-date-month {
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-top: 0.2rem;
+    }
+
+    .event-date-year {
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 0.1rem;
+    }
+
+    .event-divider {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--gold-pale), transparent);
+      margin: 0;
+    }
+
+    .event-info {}
+
+    .event-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      background: var(--navy);
+      padding: 0.2em 0.7em;
+      margin-bottom: 0.5rem;
+    }
+
+    .event-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .event-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .event-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .event-coming {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      border: 1px solid var(--gold-pale);
+      padding: 0.3em 0.8em;
+    }
+
+    /* ── LEADER ── */
+    #leader { background: var(--white); }
+
+    .leader-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .leader-photo-wrap {
+      position: relative;
+    }
+
+    .leader-photo-border {
+      position: absolute;
+      top: -10px; left: -10px; right: 10px; bottom: 10px;
+      border: 1px solid var(--gold-pale);
+      pointer-events: none;
+    }
+
+    .leader-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .leader-award {
+      position: absolute;
+      bottom: 0; right: -10px;
+      z-index: 2;
+      background: var(--navy);
+      border: 1px solid var(--gold);
+      padding: 0.8rem 1.2rem;
+      text-align: center;
+    }
+
+    .leader-award-icon { font-size: 1.4rem; }
+    .leader-award-text { font-size: 0.68rem; color: var(--gold-light); letter-spacing: 0.08em; margin-top: 0.3rem; line-height: 1.5; }
+
+    .leader-content { padding-top: 1rem; }
+
+    .leader-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: 0.1em;
+      margin: 0.8rem 0 0.3rem;
+    }
+
+    .leader-role {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 2rem;
+    }
+
+    .leader-kamon { margin-bottom: 2rem; }
+    .leader-kamon .kamon-line::before,
+    .leader-kamon .kamon-line::after { flex: 0 0 40px; }
+
+    .leader-bio {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: #555;
+      line-height: 2.3;
+      letter-spacing: 0.05em;
+    }
+
+    .leader-bio p + p { margin-top: 1rem; }
+
+    .leader-bio strong {
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    .leader-quote {
+      margin-top: 2.5rem;
+      padding: 1.5rem 2rem;
+      border-left: 2px solid var(--gold);
+      background: var(--ivory);
+    }
+
+    .leader-quote p {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1rem;
+      color: var(--navy);
+      line-height: 2;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── MEDIA ── */
+    #media { background: var(--ivory-dark); }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .media-img-wrap {
+      position: relative;
+    }
+
+    .media-img-wrap img {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--border);
+    }
+
+    .media-stamp {
+      position: absolute;
+      top: -1rem;
+      right: -1rem;
+      background: var(--navy);
+      color: var(--gold-light);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      padding: 0.4em 0.9em;
+      border: 1px solid var(--gold);
+    }
+
+    .media-headline {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: 0.06em;
+      line-height: 1.5;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .media-text {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: #555;
+      line-height: 2.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .media-quote {
+      padding: 1.2rem 1.5rem;
+      border-left: 2px solid var(--gold);
+      background: var(--white);
+    }
+
+    .media-quote p {
+      font-size: 0.88rem;
+      color: var(--ink);
+      line-height: 1.9;
+      font-style: italic;
+    }
+
+    .media-quote cite {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      font-style: normal;
+    }
+
+    /* ── GALLERY ── */
+    #gallery { background: var(--navy-deep); }
+
+    #gallery .sec-title { color: var(--white); }
+    #gallery .sec-lead { color: rgba(255,255,255,0.5); }
+    #gallery .sec-en { color: var(--gold-light); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: 180px 180px 180px;
+      gap: 4px;
+    }
+
+    .gp { overflow: hidden; }
+
+    .gp img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+      filter: brightness(0.88);
+    }
+
+    .gp:hover img { transform: scale(1.06); filter: brightness(1); }
+
+    .gp1 { grid-column: 1 / 6;  grid-row: 1 / 3; }
+    .gp2 { grid-column: 6 / 9;  grid-row: 1 / 2; }
+    .gp3 { grid-column: 9 / 13; grid-row: 1 / 2; }
+    .gp4 { grid-column: 6 / 8;  grid-row: 2 / 3; }
+    .gp5 { grid-column: 8 / 10; grid-row: 2 / 3; }
+    .gp6 { grid-column: 10 / 13; grid-row: 2 / 4; }
+    .gp7 { grid-column: 1 / 4;  grid-row: 3 / 4; }
+    .gp8 { grid-column: 4 / 7;  grid-row: 3 / 4; }
+    .gp9 { grid-column: 7 / 10; grid-row: 3 / 4; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-info-text {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: #555;
+      line-height: 2.2;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-socials {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .c-social {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--border);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.83rem;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+
+    .c-social:hover {
+      border-color: var(--navy);
+      background: var(--ivory);
+      color: var(--navy);
+    }
+
+    .c-social svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* Form */
+    .form-fields { display: flex; flex-direction: column; gap: 1.4rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .field-lbl {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--navy);
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .field-req {
+      font-size: 0.63rem;
+      color: #c0392b;
+      background: #fdecea;
+      padding: 0.1em 0.45em;
+      font-weight: 500;
+    }
+
+    .field-inp,
+    .field-area {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid var(--border);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--ink);
+      background: var(--ivory);
+      outline: none;
+      transition: border-color 0.15s, background 0.15s;
+      border-radius: 0;
+      appearance: none;
+    }
+
+    .field-inp:focus,
+    .field-area:focus {
+      border-color: var(--navy);
+      background: var(--white);
+    }
+
+    .field-area { height: 140px; resize: vertical; }
+
+    .form-submit {
+      align-self: flex-start;
+      padding: 0.85em 2.5em;
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      border-radius: 0;
+    }
+
+    .form-submit:hover { background: var(--navy-mid); }
+
+    /* ── CLOSING BANNER ── */
+    .closing-banner {
+      background: var(--navy);
+      border-top: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+
+    .closing-inner { max-width: 600px; margin: 0 auto; }
+
+    .closing-en {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .closing-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.5;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+
+    .closing-kamon { margin-bottom: 1.5rem; }
+    .closing-kamon .kamon-line::before,
+    .closing-kamon .kamon-line::after { flex: 0 0 50px; }
+
+    .closing-text {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      line-height: 2.2;
+      letter-spacing: 0.08em;
+      margin-bottom: 2.5rem;
+    }
+
+    .closing-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy-deep);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 3rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .footer-logo-img {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--gold);
+    }
+
+    .footer-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: 0.1em;
+    }
+
+    .footer-name span { color: var(--gold-light); }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--gold-light); }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.6rem;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      font-size: 0.76rem;
+      letter-spacing: 0.05em;
+      transition: color 0.15s;
+    }
+
+    .footer-social:hover { color: var(--gold-light); }
+    .footer-social svg { width: 14px; height: 14px; }
+
+    .footer-copy {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.22);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .leader-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .leader-photo { max-width: 300px; aspect-ratio: auto; height: 380px; }
+      .media-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+      .gp1,.gp2,.gp3,.gp4,.gp5,.gp6,.gp7,.gp8,.gp9 {
+        grid-column: auto; grid-row: auto; height: 200px;
+      }
+      .event-item { grid-template-columns: 100px 1fr; gap: 1.5rem; }
+      .event-divider { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .sec { padding: 5rem 1.5rem; }
+      .act-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-right { align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; gap: 1rem; }
+      .about-nums { flex-direction: column; }
+      .num-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .num-item:last-child { border-bottom: none; }
+      .event-item { grid-template-columns: 1fr; padding: 1.5rem; }
+      .event-date { text-align: left; display: flex; align-items: center; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="nav-brand">
+    <img src="logo.png" alt="ロゴ" class="nav-logo-img" onerror="this.style.display='none'">
+    <span class="nav-brand-text"><span>えん</span>びゃれ</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">えんびゃれとは</a></li>
+    <li><a href="#activities">活動内容</a></li>
+    <li><a href="#events">イベント</a></li>
+    <li><a href="#leader">代表</a></li>
+    <li><a href="#gallery">ギャラリー</a></li>
+    <li><a href="#contact">お問い合わせ</a></li>
+  </ul>
+  <div class="nav-socials">
+    <a href="https://www.instagram.com/tadami_okoshi/" target="_blank" class="nav-social" title="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="5"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a href="https://x.com/HPR49150091" target="_blank" class="nav-social" title="X (Twitter)">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+      </svg>
+    </a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">大正大学 · 会津大学 学生団体 ─ 福島県只見町</div>
+    <h1 class="hero-title">
+      若者が結ぶ、<br>
+      <span class="gold">只見の縁。</span>
+    </h1>
+    <div class="hero-kamon">
+      <div class="kamon-line">
+        <div class="kamon-diamond"></div>
+      </div>
+    </div>
+    <p class="hero-sub">
+      農業、討論、自然探索——<br>
+      学生が地域住民と本気で向き合い、まちの未来をつくる。
+    </p>
+    <div class="hero-btns">
+      <a href="#about" class="btn btn-gold">えんびゃれとは</a>
+      <a href="#events" class="btn btn-outline-white">イベント情報</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="sec" id="about">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <p class="sec-en">About</p>
+      <h2 class="sec-title">えんびゃれとは</h2>
+      <div class="sec-kamon">
+        <div class="kamon-line"><div class="kamon-diamond"></div></div>
+      </div>
+      <p class="sec-lead">「楽しみ続けたい」——その一心で、只見へ。</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-images">
+        <div class="about-img about-img-main">
+          <img src="../../Pictures/LINE_ALBUM_20260514_260514_7.jpg" alt="学生と地域住民の集合写真">
+        </div>
+        <div class="about-img about-img-sm">
+          <img src="../../Pictures/LINE_ALBUM_20260514_260514_9.jpg" alt="只見湖">
+        </div>
+        <div class="about-img about-img-sm">
+          <img src="../../Pictures/LINE_ALBUM_20260514_260514_5.jpg" alt="伝統文化体験">
+        </div>
+      </div>
+      <div>
+        <div class="about-body">
+          <p>えんびゃれは、大正大学・会津大学の学生が集まり、福島県只見町で地域活性化に取り組む学生団体です。</p>
+          <p>少子高齢化が進む只見町で、学生ならではの視点とエネルギーをもって住民の方々と協力しながら、農業体験・地域討論・文化継承など多彩な活動を続けています。</p>
+          <p>数字やランクではなく、実際に体を動かし、人と話し、地域に根ざした体験を通じて学び、地域の未来をともにつくっています。<br>「若者の力が、まちを変える」——その信念のもと、只見に通い続けています。</p>
+        </div>
+        <div class="about-nums">
+          <div class="num-item">
+            <div class="num-val">40<span class="num-unit">+</span></div>
+            <div class="num-label">参加学生数</div>
+          </div>
+          <div class="num-item">
+            <div class="num-val">2<span class="num-unit">校</span></div>
+            <div class="num-label">連携大学</div>
+          </div>
+          <div class="num-item">
+            <div class="num-val" style="font-family:'Noto Serif JP',serif; font-size:1.4rem; line-height:1.2;">只見</div>
+            <div class="num-label">活動拠点・福島県</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ACTIVITIES ── -->
+<section class="sec" id="activities">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <p class="sec-en">Activities</p>
+      <h2 class="sec-title">活動内容</h2>
+      <div class="sec-kamon">
+        <div class="kamon-line"><div class="kamon-diamond"></div></div>
+      </div>
+      <p class="sec-lead">農業から討論会まで。教室では学べない体験がここにあります。</p>
+    </div>
+    <div class="act-grid">
+      <div class="act-card">
+        <div class="act-card-img"><img src="../../Pictures/LINE_ALBUM_20260514_260514_14.jpg" alt="農業体験"></div>
+        <div class="act-card-body">
+          <p class="act-num">其の一 ─ 農業体験</p>
+          <h3 class="act-title">畑で汗をかく、<br>本物の体験</h3>
+          <p class="act-desc">種芋の植え付けから農地整備まで、地域の農家さんとともに農作業を体験。</p>
+        </div>
+      </div>
+      <div class="act-card">
+        <div class="act-card-img"><img src="../../Pictures/LINE_ALBUM_20260514_260514_6.jpg" alt="地域討論会"></div>
+        <div class="act-card-body">
+          <p class="act-num">其の二 ─ 地域討論会</p>
+          <h3 class="act-title">住民と本音で<br>語り合う</h3>
+          <p class="act-desc">少子高齢化・移住促進など、住民の方々と膝を交えた討論会を実施。</p>
+        </div>
+      </div>
+      <div class="act-card">
+        <div class="act-card-img"><img src="../../Pictures/LINE_ALBUM_20260514_260514_5.jpg" alt="伝統文化体験"></div>
+        <div class="act-card-body">
+          <p class="act-num">其の三 ─ 伝統文化体験</p>
+          <h3 class="act-title">衣装をまとい、<br>暮らしの歴史を知る</h3>
+          <p class="act-desc">只見の伝統的な衣装や道具に実際に触れ、地域のアイデンティティを受け継ぐ。</p>
+        </div>
+      </div>
+      <div class="act-card">
+        <div class="act-card-img"><img src="../../Pictures/LINE_ALBUM_20260514_260514_10.jpg" alt="環境ボランティア"></div>
+        <div class="act-card-body">
+          <p class="act-num">其の四 ─ 環境ボランティア</p>
+          <h3 class="act-title">水路整備から<br>森林作業まで</h3>
+          <p class="act-desc">水路の土砂上げや森林整備など、地域に必要な労働力を学生が担う。</p>
+        </div>
+      </div>
+      <div class="act-card">
+        <div class="act-card-img"><img src="../../Pictures/LINE_ALBUM_20260514_260514_8.jpg" alt="自然・文化探索"></div>
+        <div class="act-card-body">
+          <p class="act-num">其の五 ─ 自然・文化探索</p>
+          <h3 class="act-title">只見の自然と歴史を<br>体全体で学ぶ</h3>
+          <p class="act-desc">ミュージアム訪問や湖での体験活動を通じて、只見の魅力を深く知る。</p>
+        </div>
+      </div>
+      <div class="act-card">
+        <div class="act-card-img"><img src="../../Pictures/LINE_ALBUM_20260514_260514_16.jpg" alt="自然体験"></div>
+        <div class="act-card-body">
+          <p class="act-num">其の六 ─ 自然体験</p>
+          <h3 class="act-title">雄大な自然に<br>心を洗われる</h3>
+          <p class="act-desc">釣りや湖畔散策など、国内有数の豪雪地帯・只見の自然の中で仲間と過ごす。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EVENTS ── -->
+<section class="sec" id="events" style="background:var(--white);">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <p class="sec-en">Events</p>
+      <h2 class="sec-title">イベント情報</h2>
+      <div class="sec-kamon">
+        <div class="kamon-line"><div class="kamon-diamond"></div></div>
+      </div>
+      <p class="sec-lead">只見町での活動日程・イベントをお知らせします。</p>
+    </div>
+    <div class="event-list">
+      <div class="event-item">
+        <div class="event-date">
+          <div class="event-date-day">05</div>
+          <div class="event-date-month">MAY 2026</div>
+          <div class="event-date-year">令和8年</div>
+        </div>
+        <div class="event-divider"></div>
+        <div class="event-info">
+          <span class="event-tag">農業体験</span>
+          <div class="event-name">春の農業体験 ─ 種芋植え付け</div>
+          <div class="event-meta">
+            <span>📍 福島県只見町</span>
+            <span>🕙 10:00〜16:00</span>
+            <span>👥 学生・地域住民</span>
+          </div>
+        </div>
+        <div class="event-coming">開催済</div>
+      </div>
+      <div class="event-item">
+        <div class="event-date">
+          <div class="event-date-day">07</div>
+          <div class="event-date-month">JUL 2026</div>
+          <div class="event-date-year">令和8年</div>
+        </div>
+        <div class="event-divider"></div>
+        <div class="event-info">
+          <span class="event-tag">地域交流</span>
+          <div class="event-name">夏の地域討論会 ─ 只見の未来を語る夕べ</div>
+          <div class="event-meta">
+            <span>📍 只見町公民館</span>
+            <span>🕕 18:00〜20:30</span>
+            <span>👥 参加自由</span>
+          </div>
+        </div>
+        <div class="event-coming">近日開催</div>
+      </div>
+      <div class="event-item">
+        <div class="event-date">
+          <div class="event-date-day">09</div>
+          <div class="event-date-month">SEP 2026</div>
+          <div class="event-date-year">令和8年</div>
+        </div>
+        <div class="event-divider"></div>
+        <div class="event-info">
+          <span class="event-tag">収穫祭</span>
+          <div class="event-name">秋の収穫祭 ─ 春に植えた芋を掘ろう</div>
+          <div class="event-meta">
+            <span>📍 福島県只見町</span>
+            <span>🕙 10:00〜17:00</span>
+            <span>👥 参加者募集中</span>
+          </div>
+        </div>
+        <div class="event-coming">予定</div>
+      </div>
+      <div class="event-item">
+        <div class="event-date">
+          <div class="event-date-day">11</div>
+          <div class="event-date-month">NOV 2026</div>
+          <div class="event-date-year">令和8年</div>
+        </div>
+        <div class="event-divider"></div>
+        <div class="event-info">
+          <span class="event-tag">文化体験</span>
+          <div class="event-name">晩秋の只見 ─ 伝統文化と暮らし体験</div>
+          <div class="event-meta">
+            <span>📍 ただみ・モノとくらしのミュージアム</span>
+            <span>🕙 10:00〜15:00</span>
+          </div>
+        </div>
+        <div class="event-coming">予定</div>
+      </div>
+    </div>
+    <div style="margin-top:2rem; text-align:center;">
+      <a href="https://www.instagram.com/tadami_okoshi/" target="_blank" class="btn btn-outline-navy">最新情報は Instagram で →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── LEADER ── -->
+<section class="sec" id="leader" style="background:var(--ivory);">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <p class="sec-en">Leader</p>
+      <h2 class="sec-title">代表紹介</h2>
+      <div class="sec-kamon">
+        <div class="kamon-line"><div class="kamon-diamond"></div></div>
+      </div>
+    </div>
+    <div class="leader-grid">
+      <div class="leader-photo-wrap">
+        <div class="leader-photo-border"></div>
+        <img src="../../Pictures/LINE_ALBUM_20260514_260514_15.jpg" alt="代表 堀金康太" class="leader-photo">
+        <div class="leader-award">
+          <div class="leader-award-icon">🏆</div>
+          <div class="leader-award-text">文部科学<br>大臣賞 受賞</div>
+        </div>
+      </div>
+      <div class="leader-content">
+        <p class="sec-en">代表メッセージ</p>
+        <h3 class="leader-name">堀金 康太</h3>
+        <p class="leader-role">大正大学 地域創生学部 地域創生学科 ／ えんびゃれ 代表</p>
+        <div class="leader-kamon">
+          <div class="kamon-line"><div class="kamon-diamond"></div></div>
+        </div>
+        <div class="leader-bio">
+          <p>高校1年生のとき、地元・福島県只見町の田子倉ダムで<strong>厄介者として扱われていた外来魚「ブラックバス」</strong>に目を向けた。誰も活かそうとしなかった存在を、料理という形で価値に変えた——その探究活動が、<strong>文部科学大臣賞</strong>という形で社会に認められた。</p>
+          <p>「地域の課題を、面白さに変えられる」。その確信を胸に、大正大学地域創生学部へ進学。大学入学後はその想いをさらに大きなかたちで体現するために、学生団体「えんびゃれ」を立ち上げた。</p>
+          <p>若者と地域をつなぐ——言葉はシンプルでも、実行する人間は少ない。ただ語るのではなく、仲間を集め、只見町の地に何度も足を運び、汗をかき続けてきた。</p>
+        </div>
+        <div class="leader-quote">
+          <p>「楽しみながら、本気で地域と向き合える場をつくりたい。<br>若者の力が、まちを変える。それを、只見で証明したい。」</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MEDIA ── -->
+<section class="sec" id="media" style="background:var(--ivory-dark);">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <p class="sec-en">Media Coverage</p>
+      <h2 class="sec-title">メディア掲載</h2>
+      <div class="sec-kamon">
+        <div class="kamon-line"><div class="kamon-diamond"></div></div>
+      </div>
+    </div>
+    <div class="media-grid">
+      <div class="media-img-wrap">
+        <img src="../../Pictures/LINE_ALBUM_20260514_260514_1.jpg" alt="新聞記事">
+        <div class="media-stamp">地方新聞 掲載</div>
+      </div>
+      <div>
+        <p class="sec-en">Press</p>
+        <h3 class="media-headline">「若者が結ぶ地域交流<br>大学生が只見で奉仕、討論会」</h3>
+        <p class="media-text">会津大や大正大の学生らでつくる団体「えんびゃれ」が本年度、只見町で地域活動に取り組んでいる。地域住民との交流などを通じ、若者の視点で地域活性化を図りたいと考えており、地方紙にも取り上げられた。<br><br>学生らは町内の少子高齢化に取り組む活動を通じて住民との交流の場を創出。県内外の学生延べ約40人が町内の住民を訪れ、集落の住民らと共同作業や討論会を行った。</p>
+        <div class="media-quote">
+          <p>「やりたいことを受け入れてくれた。集落の人たちが多く来てくれながら、楽しんで活動を続けたい」</p>
+          <cite>── 代表 堀金康太</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ── -->
+<section class="sec" id="gallery">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <p class="sec-en">Gallery</p>
+      <h2 class="sec-title">活動の記録</h2>
+      <div class="sec-kamon">
+        <div class="kamon-line"><div class="kamon-diamond"></div></div>
+      </div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gp gp1"><img src="../../Pictures/LINE_ALBUM_20260514_260514_17.jpg" alt="集合写真"></div>
+      <div class="gp gp2"><img src="../../Pictures/LINE_ALBUM_20260514_260514_2.jpg" alt="農作業"></div>
+      <div class="gp gp3"><img src="../../Pictures/LINE_ALBUM_20260514_260514_3.jpg" alt="農作業"></div>
+      <div class="gp gp4"><img src="../../Pictures/LINE_ALBUM_20260514_260514_4.jpg" alt="集合"></div>
+      <div class="gp gp5"><img src="../../Pictures/LINE_ALBUM_20260514_260514_11.jpg" alt="討論会"></div>
+      <div class="gp gp6"><img src="../../Pictures/LINE_ALBUM_20260514_260514_13.jpg" alt="交流"></div>
+      <div class="gp gp7"><img src="../../Pictures/LINE_ALBUM_20260514_260514_12.jpg" alt="討論会"></div>
+      <div class="gp gp8"><img src="../../Pictures/LINE_ALBUM_20260514_260514_16.jpg" alt="釣り体験"></div>
+      <div class="gp gp9"><img src="../../Pictures/LINE_ALBUM_20260514_260514_8.jpg" alt="ミュージアム"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="sec" id="contact" style="background:var(--white);">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <p class="sec-en">Contact</p>
+      <h2 class="sec-title">お問い合わせ</h2>
+      <div class="sec-kamon">
+        <div class="kamon-line"><div class="kamon-diamond"></div></div>
+      </div>
+      <p class="sec-lead">参加希望・ご質問・取材・連携のご依頼など、お気軽にご連絡ください。</p>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-info-text">フォームからのお問い合わせのほか、SNSでのご連絡も受け付けております。</p>
+        <div class="contact-socials">
+          <a href="https://www.instagram.com/tadami_okoshi/" target="_blank" class="c-social">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="5"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+            Instagram: @tadami_okoshi
+          </a>
+          <a href="https://x.com/HPR49150091" target="_blank" class="c-social">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+            </svg>
+            X (Twitter): @HPR49150091
+          </a>
+        </div>
+      </div>
+      <form class="form-fields" onsubmit="handleForm(event)">
+        <div class="form-row">
+          <div class="field">
+            <label class="field-lbl">お名前 <span class="field-req">必須</span></label>
+            <input type="text" class="field-inp" placeholder="山田 太郎" required>
+          </div>
+          <div class="field">
+            <label class="field-lbl">フリガナ <span class="field-req">必須</span></label>
+            <input type="text" class="field-inp" placeholder="ヤマダ タロウ" required>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-lbl">所属（大学・学校名など） <span class="field-req">必須</span></label>
+          <input type="text" class="field-inp" placeholder="○○大学" required>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label class="field-lbl">メールアドレス <span class="field-req">必須</span></label>
+            <input type="email" class="field-inp" placeholder="example@email.com" required>
+          </div>
+          <div class="field">
+            <label class="field-lbl">電話番号 <span class="field-req">必須</span></label>
+            <input type="tel" class="field-inp" placeholder="090-0000-0000" required>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-lbl">ご質問・お問い合わせ内容</label>
+          <textarea class="field-area" placeholder="参加について、活動の詳細など、お気軽にご記入ください。"></textarea>
+        </div>
+        <button type="submit" class="form-submit">送信内容を確認する</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── CLOSING BANNER ── -->
+<div class="closing-banner">
+  <div class="closing-inner">
+    <p class="closing-en">Join Us</p>
+    <h2 class="closing-title">あなたも、只見へ<br>来ませんか。</h2>
+    <div class="closing-kamon">
+      <div class="kamon-line"><div class="kamon-diamond" style="border-color:var(--gold);"></div></div>
+    </div>
+    <p class="closing-text">
+      農業・討論・自然体験——<br>
+      楽しみながら、地域の未来に貢献できる場所がここにあります。
+    </p>
+    <div class="closing-btns">
+      <a href="https://www.instagram.com/tadami_okoshi/" target="_blank" class="btn btn-gold">
+        Instagram で活動を見る
+      </a>
+      <a href="https://x.com/HPR49150091" target="_blank" class="btn btn-outline-white">
+        X でフォローする
+      </a>
+      <a href="#contact" class="btn btn-outline-white">お問い合わせ</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-brand">
+      <img src="logo.png" alt="ロゴ" class="footer-logo-img" onerror="this.style.display:'none'">
+      <span class="footer-name"><span>えん</span>びゃれ</span>
+    </a>
+    <ul class="footer-links">
+      <li><a href="#about">えんびゃれとは</a></li>
+      <li><a href="#activities">活動内容</a></li>
+      <li><a href="#events">イベント</a></li>
+      <li><a href="#leader">代表</a></li>
+      <li><a href="#gallery">ギャラリー</a></li>
+      <li><a href="#contact">お問い合わせ</a></li>
+    </ul>
+    <div class="footer-right">
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/tadami_okoshi/" target="_blank" class="footer-social">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+          @tadami_okoshi
+        </a>
+        <a href="https://x.com/HPR49150091" target="_blank" class="footer-social">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+          </svg>
+          @HPR49150091
+        </a>
+      </div>
+      <p class="footer-copy">© 2026 えんびゃれ ─ 大正大学・会津大学 学生団体</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function handleForm(e) {
+    e.preventDefault();
+    alert('ありがとうございます。送信内容を確認しております。後ほどご連絡いたします。');
+    e.target.reset();
+  }
+</script>
+
+</body>
+</html>
