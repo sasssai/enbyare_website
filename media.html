@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>メディア掲載 | えんびゃれ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:  #080c08;
+    --green:  #0f2318;
+    --green2: #1a3828;
+    --orange: #e07b3a;
+    --white:  #f5f0e8;
+    --gray:   #8a9a8a;
+    --gold:   #c9a84c;
+    --line:   rgba(201,168,76,0.3);
+  }
+
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(8,12,8,0.95), transparent);
+    backdrop-filter: blur(4px);
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+  }
+  .nav-logo img {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .nav-logo-text {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1rem;
+    color: var(--white);
+    letter-spacing: 0.1em;
+  }
+  .nav-back {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--gray);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    transition: color 0.3s;
+  }
+  .nav-back:hover { color: var(--orange); }
+  .nav-back::before { content: '←'; font-size: 1rem; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 65vh;
+    min-height: 420px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/24.jpg');
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.08);
+    filter: brightness(0.5) saturate(0.8);
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(8,12,8,0.2) 0%, rgba(8,12,8,0.98) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 1.5rem 5rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid var(--gold);
+    padding: 0.4rem 1.2rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(2rem, 6vw, 3.8rem);
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .hero-title strong {
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .hero-date {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    color: var(--gray);
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ── MAIN FEATURE ── */
+  .feature {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 6rem;
+  }
+  .feature-grid.reverse { direction: rtl; }
+  .feature-grid.reverse > * { direction: ltr; }
+
+  .feature-img-wrap {
+    position: relative;
+  }
+  .feature-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+  }
+  .feature-img-label {
+    position: absolute;
+    bottom: 0; left: 0;
+    background: rgba(8,12,8,0.85);
+    padding: 0.6rem 1.2rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    font-family: 'Inter', sans-serif;
+  }
+  .feature-img-accent {
+    position: absolute;
+    top: -8px; right: -8px;
+    width: 60px; height: 60px;
+    border-top: 2px solid var(--gold);
+    border-right: 2px solid var(--gold);
+    opacity: 0.5;
+  }
+
+  .feature-text {}
+  .feature-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1.2rem;
+  }
+  .feature-heading {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    line-height: 1.7;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .feature-heading em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .feature-body {
+    font-size: 0.95rem;
+    line-height: 2.2;
+    color: rgba(245,240,232,0.75);
+    letter-spacing: 0.04em;
+  }
+  .feature-body + .feature-body { margin-top: 1rem; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    opacity: 0.3;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gold);
+  }
+  .divider-mark {
+    font-family: 'Noto Serif JP', serif;
+    color: var(--gold);
+    font-size: 1rem;
+  }
+
+  /* ── QUOTE BLOCK ── */
+  .quote-block {
+    background: var(--green);
+    border-left: 3px solid var(--gold);
+    padding: 2.5rem 3rem;
+    margin: 4rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .quote-block::before {
+    content: '〝';
+    position: absolute;
+    top: -1rem; left: 1rem;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 8rem;
+    color: var(--gold);
+    opacity: 0.06;
+    line-height: 1;
+  }
+  .quote-text {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    line-height: 2;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    position: relative;
+    z-index: 1;
+  }
+  .quote-text em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .quote-source {
+    margin-top: 1.2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--gray);
+  }
+
+  /* ── MEDIA CARD ── */
+  .media-card-section {
+    background: var(--green);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 5rem 3rem;
+  }
+  .media-card-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .media-outlet {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .media-outlet-line {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .media-outlet-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.3em;
+    color: var(--white);
+  }
+  .media-outlet-type {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-family: 'Inter', sans-serif;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .media-desc {
+    font-size: 0.9rem;
+    line-height: 2;
+    color: var(--gray);
+    letter-spacing: 0.05em;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* ── CTA ── */
+  .page-cta {
+    padding: 7rem 3rem;
+    text-align: center;
+  }
+  .cta-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  .cta-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--white);
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .btn-outline {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    border: 1px solid var(--orange);
+    color: var(--orange);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    font-family: 'Noto Serif JP', serif;
+    transition: background 0.3s, color 0.3s;
+    margin: 0.4rem;
+  }
+  .btn-outline:hover { background: var(--orange); color: var(--black); }
+  .btn-solid {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    background: var(--orange);
+    color: var(--black);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    font-family: 'Noto Serif JP', serif;
+    transition: background 0.3s;
+    margin: 0.4rem;
+  }
+  .btn-solid:hover { background: #c4622a; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--green);
+    border-top: 1px solid var(--line);
+    padding: 3rem;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.3em;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .footer-sub {
+    font-size: 0.72rem;
+    color: var(--gray);
+    letter-spacing: 0.15em;
+  }
+
+  /* ── REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .delay-1 { transition-delay: 0.15s; }
+  .delay-2 { transition-delay: 0.3s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.2rem; }
+    .hero { height: 55vh; min-height: 360px; }
+    .hero-content { padding: 0 1.2rem 4rem; }
+    .feature { padding: 4rem 1.2rem; }
+    .feature-grid { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 4rem; }
+    .feature-grid.reverse { direction: ltr; }
+    .quote-block { padding: 2rem 1.5rem; }
+    .media-card-section { padding: 4rem 1.2rem; }
+    .page-cta { padding: 4rem 1.2rem; }
+    .btn-outline, .btn-solid { display: block; text-align: center; margin: 0.4rem 0; }
+    footer { padding: 2rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="えんびゃれ" onerror="this.style.display='none'">
+    <span class="nav-logo-text">えんびゃれ</span>
+  </a>
+  <a href="index.html" class="nav-back">トップページへ戻る</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-badge">📰 Media Coverage</p>
+    <h1 class="hero-title">
+      <strong>福島民報</strong>に<br>取材いただきました
+    </h1>
+    <p class="hero-date">2026 — Fukushima Minpo</p>
+  </div>
+</section>
+
+<!-- ── MAIN FEATURE ── -->
+<section class="feature">
+
+  <!-- 写真1 + テキスト -->
+  <div class="feature-grid reveal">
+    <div class="feature-img-wrap">
+      <img src="images/24.jpg" alt="福島民報 取材の様子" class="feature-img">
+      <div class="feature-img-accent"></div>
+      <p class="feature-img-label">取材の様子 — 只見町</p>
+    </div>
+    <div class="feature-text">
+      <span class="feature-tag">Feature 01</span>
+      <h2 class="feature-heading">
+        若者が地域を変える——<br>
+        <em>えんびゃれ</em>の挑戦が<br>
+        新聞に載った日
+      </h2>
+      <p class="feature-body">
+        福島民報の記者が只見町の活動現場を訪れ、えんびゃれのメンバーと地域住民が一緒に汗をかく姿を取材してくださいました。
+      </p>
+      <p class="feature-body">
+        学生が地域と本気で向き合う姿が、メディアを通じて福島県全体へ広がっています。
+      </p>
+    </div>
+  </div>
+
+  <!-- 引用 -->
+  <div class="quote-block reveal">
+    <p class="quote-text">
+      都会の学生が只見に通い続け、住民と共に地域の課題へ向き合う——<br>
+      <em>その熱量が、このまちに新しい風を吹き込んでいる。</em>
+    </p>
+    <p class="quote-source">— 福島民報 取材記事より</p>
+  </div>
+
+  <!-- 写真2 + テキスト（逆配置） -->
+  <div class="feature-grid reverse reveal">
+    <div class="feature-img-wrap">
+      <img src="images/25.jpg" alt="取材写真" class="feature-img">
+      <div class="feature-img-accent"></div>
+      <p class="feature-img-label">只見町での活動 — えんびゃれ</p>
+    </div>
+    <div class="feature-text">
+      <span class="feature-tag">Feature 02</span>
+      <h2 class="feature-heading">
+        地域の人と学生が<br>
+        <em>本音でつながる場</em>を<br>
+        只見につくる
+      </h2>
+      <p class="feature-body">
+        農業体験・地域討論・伝統文化の継承など、えんびゃれの活動は多岐にわたります。取材では、学生と地域住民が笑顔で語り合う現場が記録されました。
+      </p>
+      <p class="feature-body">
+        「来てよかった」ではなく、「また来たい」「ここを変えたい」と思える場所をつくることが、えんびゃれの目標です。
+      </p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ── MEDIA OUTLET INFO ── -->
+<div class="media-card-section reveal">
+  <div class="media-card-inner">
+    <span class="media-outlet-type">掲載媒体</span>
+    <div class="media-outlet">
+      <div class="media-outlet-line"></div>
+      <p class="media-outlet-name">福島民報</p>
+      <div class="media-outlet-line"></div>
+    </div>
+    <p class="media-desc">
+      福島県を代表する地方紙。えんびゃれの活動と、只見町での学生・住民の交流が紙面で紹介されました。
+    </p>
+  </div>
+</div>
+
+<!-- ── CTA ── -->
+<div class="page-cta reveal">
+  <span class="cta-label">Join Us</span>
+  <p class="cta-title">
+    次は、あなたも<br>只見の物語の一部になりませんか。
+  </p>
+  <a href="index.html#contact" class="btn-solid">参加を申し込む</a>
+  <a href="index.html" class="btn-outline">トップへ戻る</a>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p class="footer-logo">えんびゃれ</p>
+  <p class="footer-sub">Ennbyare — Tadami, Fukushima</p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
