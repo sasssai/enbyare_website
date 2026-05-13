@@ -22,7 +22,7 @@
     --line:    rgba(201,168,76,0.3);
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
 
   body {
     background: var(--black);
@@ -577,7 +577,7 @@
   }
   .reveal-left {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-20px);
     transition: opacity 0.9s ease, transform 0.9s ease;
   }
   .reveal-left.visible {
