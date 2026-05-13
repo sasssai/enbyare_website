@@ -1371,39 +1371,43 @@
     }
 
     @media (max-width: 768px) {
-      nav { padding: 0 1.2rem; }
-      .nav-menu {
-        display: none;
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
+      nav {
+        padding: 0;
+        flex-direction: column;
+        align-items: stretch;
+        height: auto;
         background: rgba(8,12,8,0.97);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-        z-index: 400;
+        backdrop-filter: blur(20px);
       }
-      .nav-menu.open { display: flex; }
-      .nav-menu a { font-size: 1.2rem; color: rgba(255,255,255,0.85); letter-spacing: 0.15em; }
-      .nav-right { display: none; }
-      .hamburger {
+      .nav-top-row {
         display: flex;
-        flex-direction: column;
-        gap: 5px;
-        cursor: pointer;
-        z-index: 600;
-        padding: 4px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1.2rem;
+        height: 52px;
       }
-      .hamburger span {
+      .nav-menu {
+        display: flex;
+        overflow-x: auto;
+        gap: 0;
+        padding: 0 0.5rem 0.5rem;
+        scrollbar-width: none;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+      }
+      .nav-menu::-webkit-scrollbar { display: none; }
+      .nav-menu li { flex-shrink: 0; }
+      .nav-menu a {
+        font-size: 0.72rem;
+        padding: 0.5rem 0.8rem;
+        white-space: nowrap;
         display: block;
-        width: 24px;
-        height: 2px;
-        background: var(--white);
-        transition: all 0.3s;
+        color: rgba(255,255,255,0.65);
+        letter-spacing: 0.06em;
       }
-      .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-      .hamburger.open span:nth-child(2) { opacity: 0; }
-      .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      .nav-right { display: none; }
+      .hamburger { display: none; }
       .sec { padding: 5rem 1.2rem; }
       .gallery-section { padding: 5rem 1.2rem; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1422,10 +1426,21 @@
 
 <!-- ── NAV ── -->
 <nav id="nav">
-  <a href="#" class="nav-brand">
-    <img src="logo.png" alt="えんびゃれ ロゴ" class="nav-logo-img" onerror="this.style.display='none'">
-    <span class="nav-brand-name"><span>えん</span>びゃれ</span>
-  </a>
+  <div class="nav-top-row">
+    <a href="#" class="nav-brand">
+      <img src="logo.png" alt="えんびゃれ ロゴ" class="nav-logo-img" onerror="this.style.display='none'">
+      <span class="nav-brand-name"><span>えん</span>びゃれ</span>
+    </a>
+    <div class="nav-right">
+      <a href="https://www.instagram.com/tadami_okoshi/" target="_blank" class="nav-social">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://x.com/HPR49150091" target="_blank" class="nav-social">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#contact" class="nav-cta">参加する</a>
+    </div>
+  </div>
   <ul class="nav-menu">
     <li><a href="#about">私たちについて</a></li>
     <li><a href="#activities">活動内容</a></li>
@@ -1436,18 +1451,6 @@
     <li><a href="media.html">メディア</a></li>
     <li><a href="#contact">お問い合わせ</a></li>
   </ul>
-  <div class="nav-right">
-    <a href="https://www.instagram.com/tadami_okoshi/" target="_blank" class="nav-social">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-    </a>
-    <a href="https://x.com/HPR49150091" target="_blank" class="nav-social">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-    </a>
-    <a href="#contact" class="nav-cta">参加する</a>
-  </div>
-  <button class="hamburger" id="hamburger" aria-label="メニュー">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
 <!-- ── HERO ── -->
