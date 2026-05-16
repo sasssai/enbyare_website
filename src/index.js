@@ -47,7 +47,8 @@ async function handleContact(request, env) {
     },
     body: JSON.stringify({
       from: 'えんびゃれ公式サイト <onboarding@resend.dev>',
-      to: ['aizu.volun.tadami@gmail.com'],
+      // TODO: enbyare.com ドメイン検証後に aizu.volun.tadami@gmail.com に戻す
+      to: ['arai.sakura2657@gmail.com'],
       reply_to: email,
       subject: `【えんびゃれ公式サイト】${name}さんからのお問い合わせ`,
       text: body
