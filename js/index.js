@@ -41,11 +41,39 @@
   document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
 
   // ── フォーム送信 ──
-  function handleForm(e) {
+  async function handleForm(e) {
     e.preventDefault();
-    alert('ありがとうございます！後ほどご連絡いたします。');
-    e.target.reset();
+    const form = e.target;
+    const submitBtn = form.querySelector('.form-submit');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = '送信中...';
+
+    const data = Object.fromEntries(new FormData(form));
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        alert('ありがとうございます！後ほどご連絡いたします。');
+        form.reset();
+      } else {
+        const err = await res.json().catch(() => ({}));
+        alert(`送信に失敗しました: ${err.error || 'もう一度お試しください'}`);
+      }
+    } catch (err) {
+      alert('通信エラーが発生しました。もう一度お試しください。');
+      console.error(err);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
   }
+  window.handleForm = handleForm;
 
   // ── ハンバーガーメニュー ──
   const hamburger = document.getElementById('hamburger');

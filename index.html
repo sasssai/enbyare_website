@@ -467,34 +467,34 @@
           </a>
         </div>
       </div>
-      <form class="form-stack reveal-right" onsubmit="handleForm(event)">
+      <form id="contactForm" class="form-stack reveal-right" onsubmit="handleForm(event)">
         <div class="form-row">
           <div class="field">
             <label class="field-label">お名前 <span class="req">必須</span></label>
-            <input type="text" class="field-input" placeholder="山田 太郎" required>
+            <input type="text" name="name" class="field-input" placeholder="山田 太郎" required>
           </div>
           <div class="field">
             <label class="field-label">フリガナ <span class="req">必須</span></label>
-            <input type="text" class="field-input" placeholder="ヤマダ タロウ" required>
+            <input type="text" name="kana" class="field-input" placeholder="ヤマダ タロウ" required>
           </div>
         </div>
         <div class="field">
           <label class="field-label">所属（大学・学校など） <span class="req">必須</span></label>
-          <input type="text" class="field-input" placeholder="○○大学" required>
+          <input type="text" name="affiliation" class="field-input" placeholder="○○大学" required>
         </div>
         <div class="form-row">
           <div class="field">
             <label class="field-label">メールアドレス <span class="req">必須</span></label>
-            <input type="email" class="field-input" placeholder="example@email.com" required>
+            <input type="email" name="email" class="field-input" placeholder="example@email.com" required>
           </div>
           <div class="field">
             <label class="field-label">電話番号 <span class="req">必須</span></label>
-            <input type="tel" class="field-input" placeholder="090-0000-0000" required>
+            <input type="tel" name="phone" class="field-input" placeholder="090-0000-0000" required>
           </div>
         </div>
         <div class="field">
           <label class="field-label">お問い合わせ内容</label>
-          <textarea class="field-textarea" placeholder="参加について、活動の詳細など、お気軽にご記入ください。"></textarea>
+          <textarea name="message" class="field-textarea" placeholder="参加について、活動の詳細など、お気軽にご記入ください。"></textarea>
         </div>
         <button type="submit" class="form-submit">送信する →</button>
       </form>

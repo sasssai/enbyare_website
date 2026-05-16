@@ -2,12 +2,13 @@
 
 福島県只見町を舞台にした学生団体「えんびゃれ」の公式Webサイトのソースコードです。
 
-🌐 公開URL: https://sasssai.github.io/ennbyare/
+🌐 公開URL: 準備中（独自ドメイン取得後に公開予定）
+📦 GitHub: https://github.com/sasssai/enbyare_website
 
 ## 構成
 
 ```
-ennbyare/
+enbyare_website/
 ├ index.html        トップページ
 ├ media.html        メディア掲載ページ
 ├ voices.html       参加者の声ページ
