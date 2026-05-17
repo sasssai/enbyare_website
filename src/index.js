@@ -39,6 +39,10 @@ async function handleContact(request, env) {
     message || '(なし)'
   ].join('\n');
 
+  if (!env.RESEND_API_KEY) {
+    return json({ error: 'DEBUG: RESEND_API_KEY 未設定' }, 500);
+  }
+
   const resendRes = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
@@ -58,7 +62,11 @@ async function handleContact(request, env) {
   if (!resendRes.ok) {
     const errText = await resendRes.text();
     console.error('Resend API error:', resendRes.status, errText);
-    return json({ error: '送信に失敗しました' }, 502);
+    return json({
+      error: `DEBUG: Resend ${resendRes.status}`,
+      detail: errText,
+      keyHint: env.RESEND_API_KEY ? `${env.RESEND_API_KEY.slice(0, 6)}...` : 'なし'
+    }, 502);
   }
 
   return json({ ok: true });

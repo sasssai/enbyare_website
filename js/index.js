@@ -63,7 +63,8 @@
         form.reset();
       } else {
         const err = await res.json().catch(() => ({}));
-        alert(`送信に失敗しました: ${err.error || 'もう一度お試しください'}`);
+        console.error('DEBUG full error:', err);
+        alert(`送信失敗\n${err.error || ''}\n\ndetail: ${err.detail || ''}\nkey: ${err.keyHint || ''}`);
       }
     } catch (err) {
       alert('通信エラーが発生しました。もう一度お試しください。');
